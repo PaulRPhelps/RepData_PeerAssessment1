@@ -1,6 +1,18 @@
 # PA1_Template
 Sunday, May 17, 2015  
 
+
+```r
+library(knitr)
+```
+
+```
+## Warning: package 'knitr' was built under R version 3.1.3
+```
+
+```r
+opts_chunk$set(fig.path="figure/")
+```
 ## Introduction
 
 It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit, Nike Fuelband, or Jawbone Up. These type of devices are part of the "quantified self" movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain under-utilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data.
@@ -87,7 +99,7 @@ histSteps1 <- histSteps1 + ylab("Number of Steps") + xlab("Date")
 histSteps1
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+![](figure/unnamed-chunk-5-1.png) 
 
 Calculate the mean and median total number of steps taken per day.
 
@@ -115,7 +127,7 @@ lineInt1 <- lineInt1 + theme_classic()
 lineInt1
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
+![](figure/unnamed-chunk-8-1.png) 
 
 
 Identify which time interval has the maximum number of steps.
@@ -154,7 +166,7 @@ histSteps2 <- histSteps2 + theme_classic()
 histSteps2
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
+![](figure/unnamed-chunk-11-1.png) 
 
 Recalculate the mean and median total number of steps taken per day.
 
@@ -193,6 +205,6 @@ lineInt2 <- lineInt2 + theme_classic()
 lineInt2
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-14-1.png) 
+![](figure/unnamed-chunk-15-1.png) 
 
 
