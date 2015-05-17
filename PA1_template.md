@@ -96,7 +96,7 @@ histSteps1 <- histSteps1 + scale_x_date(breaks="2 weeks", labels=date_format("%Y
 histSteps1 <- histSteps1 + theme_classic()
 histSteps1 <- histSteps1 + labs(title = "Activity: Total Number of Steps Taken per Day")
 histSteps1 <- histSteps1 + ylab("Number of Steps") + xlab("Date")
-print(histSteps1)
+histSteps1
 ```
 
 ![](figure/fig1-1.png) 
