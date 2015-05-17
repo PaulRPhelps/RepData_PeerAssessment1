@@ -99,7 +99,7 @@ histSteps1 <- histSteps1 + ylab("Number of Steps") + xlab("Date")
 histSteps1
 ```
 
-![](figure/unnamed-chunk-5-1.png) 
+![](figure/fig1-1.png) 
 
 Calculate the mean and median total number of steps taken per day.
 
@@ -127,7 +127,7 @@ lineInt1 <- lineInt1 + theme_classic()
 lineInt1
 ```
 
-![](figure/unnamed-chunk-8-1.png) 
+![](figure/fig2-1.png) 
 
 
 Identify which time interval has the maximum number of steps.
@@ -166,7 +166,7 @@ histSteps2 <- histSteps2 + theme_classic()
 histSteps2
 ```
 
-![](figure/unnamed-chunk-11-1.png) 
+![](figure/fig3-1.png) 
 
 Recalculate the mean and median total number of steps taken per day.
 
@@ -205,6 +205,6 @@ lineInt2 <- lineInt2 + theme_classic()
 lineInt2
 ```
 
-![](figure/unnamed-chunk-15-1.png) 
+![](figure/fig4-1.png) 
 
 
