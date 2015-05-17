@@ -1,10 +1,5 @@
----
-title: "PA1_Template"
-output:
-  html_document:
-    keep_md: yes
-date: "Sunday, May 17, 2015"
----
+# PA1_Template
+Sunday, May 17, 2015  
 
 ## Introduction
 
@@ -30,16 +25,40 @@ The dataset is stored in a comma-separated-value (CSV) file and there are a tota
 
 Load the libraries required by the analysis.
 
-```{r}
-library(ggplot2)
-library(doBy)
-library(scales)
 
+```r
+library(ggplot2)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.1.3
+```
+
+```r
+library(doBy)
+```
+
+```
+## Warning: package 'doBy' was built under R version 3.1.3
+```
+
+```
+## Loading required package: survival
+## Loading required package: splines
+```
+
+```r
+library(scales)
+```
+
+```
+## Warning: package 'scales' was built under R version 3.1.3
 ```
 
 Read in the Activity data. 
 Keep the original data (datRaw). Create a subset of the Activity data that excludes missind data (datClean).
-```{r}
+
+```r
 datCon <- unz("activity.zip", filename="activity.csv")
 datRaw <- read.csv(datCon, header=TRUE, sep=",")
 datClean <- na.omit(datRaw)
@@ -50,13 +69,15 @@ datClean <- na.omit(datRaw)
 ### What are the Total Number of Steps taken Each Day
 
 Summarise the clean Activity Data. Calculate the total number of steps taken each day across all time intervals for that day. Save the results in a data frame for reporting.
-```{r}
+
+```r
 datDaySumClean <- summaryBy(steps ~ date, data = datClean, FUN = c(sum), keep.names=TRUE) 
 datDaySumClean$date <- as.Date(datDaySumClean$date, format = "%Y-%m-%d")
 ```
 
 A graphic of the total number of steps taken per day.
-```{r}
+
+```r
 histSteps1 <- ggplot(datDaySumClean, aes(x=date, y=steps))
 histSteps1 <- histSteps1 + geom_histogram(binwidth=5, stat="identity")
 histSteps1 <- histSteps1 + scale_x_date(breaks="2 weeks", labels=date_format("%Y-%m-%d") )
@@ -66,21 +87,26 @@ histSteps1 <- histSteps1 + ylab("Number of Steps") + xlab("Date")
 histSteps1
 ```
 
+![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+
 Calculate the mean and median total number of steps taken per day.
-```{r}
+
+```r
 datCleanMean <- mean(datDaySumClean$steps)
 datCleanMedian <- median(datDaySumClean$steps)
 ```
-The mean number of steps taken per day is `r datCleanMean`, whilst the median number of steps taken per day is `r datCleanMedian`.
+The mean number of steps taken per day is 1.0766189\times 10^{4}, whilst the median number of steps taken per day is 10765.
 
 ### What is the Daily Acivity Pattern?
 
 Calculate the average number of steps taken per 5-minute interval across all days.
-```{r}
+
+```r
 datIntervalMean <- summaryBy(steps ~ interval, data = datClean, FUN = c(mean), na.rm=TRUE, keep.names=TRUE)
 ```
 A graphic of the average number of steps taken per 5-minute interval across all days.
-```{r}
+
+```r
 lineInt1 <- ggplot(datIntervalMean, aes(x=interval, y=steps))
 lineInt1 <- lineInt1 + geom_line()
 lineInt1 <- lineInt1 + labs(title = "Activity: Average Number of Steps Taken per Activity Interval")
@@ -89,12 +115,15 @@ lineInt1 <- lineInt1 + theme_classic()
 lineInt1
 ```
 
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
+
 
 Identify which time interval has the maximum number of steps.
-```{r}
+
+```r
 IntervalMaxAvSteps <- datIntervalMean[order(datIntervalMean[,2],decreasing=TRUE)[1],1]
 ```
-Time interval `r IntervalMaxAvSteps` contains the maximum number of steps, on average, across all the days.
+Time interval 835 contains the maximum number of steps, on average, across all the days.
 
 ## Imput Missing Values in the Activity Data
 
@@ -104,7 +133,8 @@ The Activity data has mssing values for some time intervals.
 The strategy for filling in all of the missing values in the Activity data is to replace then with the corresponding mean for the corresponding 5-minute interval.
 
 Identify the observations with missing data. Apply the mean of the corresponding 5-minute time interval. Apply the imputted values to the Activity dataset. Calculate the total number of steps taken each day across all time intervals for that day.
-```{r}
+
+```r
 datNA <- subset(datRaw, is.na(steps), select = -steps)
 datNAIntMean <- merge(datNA, datIntervalMean,  by="interval")
 datNAIntMean <- datNAIntMean[, c("steps", "date", "interval")]
@@ -113,7 +143,8 @@ datDaySumFull <- summaryBy(steps ~ date, data = datCleanFull, FUN = c(sum), keep
 datDaySumFull$date <- as.Date(datDaySumFull$date, format = "%Y-%m-%d")
 ```
 A graphic of the total number of steps taken per day after the imputted missing values have been included.
-```{r}
+
+```r
 histSteps2 <- ggplot(datDaySumFull, aes(x=date, y=steps))
 histSteps2 <- histSteps2 + geom_histogram(binwidth=5, stat="identity")
 histSteps2 <- histSteps2 + scale_x_date(breaks="2 weeks", labels=date_format("%Y-%m-%d") )
@@ -123,30 +154,36 @@ histSteps2 <- histSteps2 + theme_classic()
 histSteps2
 ```
 
+![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
+
 Recalculate the mean and median total number of steps taken per day.
-```{r}
+
+```r
 datCleanFullMean <- mean(datDaySumFull$steps)
 datCleanFullMedian <- median(datDaySumFull$steps)
 ```
-The mean number of steps taken per day after the imputted missing values has been applied is `r datCleanFullMean`, whilst the median number of steps taken per day is `r datCleanFullMedian`.
+The mean number of steps taken per day after the imputted missing values has been applied is 1.0766189\times 10^{4}, whilst the median number of steps taken per day is 1.0766189\times 10^{4}.
 
 Including the imputted missing values has not changed the mean value as the imputted value was the mean of the interval. The median value has moved and now reflects the mean value.
 ## Are there differences in Activity Patterns Between Weekdays and Weekends?
 
 Factor the full dataset of Activity data to classify the days as being a 'weekday' (Monday ton Friday inclusive), or a 'weekend' (Saturday or Sunday).
-```{r}
+
+```r
 TheWeekend <- c('Saturday', 'Sunday')
 datCleanFull$DayClass <-  factor((weekdays(as.Date(datCleanFull$date)) %in% TheWeekend)+1L,
       levels=1:2, labels=c('Weekday', 'Weekend'))
 ```
 
 Calculate the average number of steps taken per 5-minute interval across all days split across Weekdays and Weekends.
-```{r}
+
+```r
 datIntervalMeanFull <- summaryBy(steps ~ interval + DayClass, data = datCleanFull, FUN = c(mean), na.rm=TRUE, keep.names=TRUE)
 ```
 
 A graphic of the average number of steps taken per 5-minute interval across all days, comparing activity for weekdays compared to weekends.
-```{r}
+
+```r
 lineInt2 <- ggplot(datIntervalMeanFull, aes(x=interval, y=steps))
 lineInt2 <- lineInt2+ geom_line()
 lineInt2 <- lineInt2 + facet_grid(DayClass~.)
@@ -155,5 +192,7 @@ lineInt2 <- lineInt2 + ylab("Average Number of Steps") + xlab("Activity 5-minute
 lineInt2 <- lineInt2 + theme_classic()
 lineInt2
 ```
+
+![](PA1_template_files/figure-html/unnamed-chunk-14-1.png) 
 
 
