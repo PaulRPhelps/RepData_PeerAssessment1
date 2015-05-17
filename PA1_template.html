@@ -105,7 +105,7 @@ histSteps1 &lt;- histSteps1 + theme_classic()
 histSteps1 &lt;- histSteps1 + labs(title = &quot;Activity: Total Number of Steps Taken per Day&quot;)
 histSteps1 &lt;- histSteps1 + ylab(&quot;Number of Steps&quot;) + xlab(&quot;Date&quot;)
 histSteps1</code></pre>
-<p><img src="figure/fig1-1.png" /></p>
+<p><img src="figure/fig1.-1.png" /></p>
 <p>Calculate the mean and median total number of steps taken per day.</p>
 <pre class="r"><code>datCleanMean &lt;- mean(datDaySumClean$steps)
 datCleanMedian &lt;- median(datDaySumClean$steps)</code></pre>
@@ -122,7 +122,7 @@ lineInt1 &lt;- lineInt1 + labs(title = &quot;Activity: Average Number of Steps T
 lineInt1 &lt;- lineInt1 + ylab(&quot;Average Number of Steps&quot;) + xlab(&quot;Activity 5-minute Interval&quot;)
 lineInt1 &lt;- lineInt1 + theme_classic()
 lineInt1</code></pre>
-<p><img src="figure/fig2-1.png" /></p>
+<p><img src="figure/fig2.-1.png" /></p>
 <p>Identify which time interval has the maximum number of steps.</p>
 <pre class="r"><code>IntervalMaxAvSteps &lt;- datIntervalMean[order(datIntervalMean[,2],decreasing=TRUE)[1],1]</code></pre>
 <p>Time interval 835 contains the maximum number of steps, on average, across all the days.</p>
@@ -149,7 +149,7 @@ histSteps2 &lt;- histSteps2 + labs(title = &quot;Total Number of Steps Taken per
 histSteps2 &lt;- histSteps2 + ylab(&quot;Number of Steps&quot;) + xlab(&quot;Date&quot;)
 histSteps2 &lt;- histSteps2 + theme_classic()
 histSteps2</code></pre>
-<p><img src="figure/fig3-1.png" /></p>
+<p><img src="figure/fig3.-1.png" /></p>
 <p>Recalculate the mean and median total number of steps taken per day.</p>
 <pre class="r"><code>datCleanFullMean &lt;- mean(datDaySumFull$steps)
 datCleanFullMedian &lt;- median(datDaySumFull$steps)</code></pre>
@@ -169,7 +169,7 @@ lineInt2 &lt;- lineInt2 + labs(title = &quot;Activity: Average Number of Steps T
 lineInt2 &lt;- lineInt2 + ylab(&quot;Average Number of Steps&quot;) + xlab(&quot;Activity 5-minute Interval&quot;)
 lineInt2 &lt;- lineInt2 + theme_classic()
 lineInt2</code></pre>
-<p><img src="figure/fig4-1.png" /></p>
+<p><img src="figure/fig4.-1.png" /></p>
 </div>
 </div>
 
