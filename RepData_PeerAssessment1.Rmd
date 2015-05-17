@@ -1,9 +1,5 @@
 ---
 title: "PA1_Template"
-output:
-  html_document:
-    keep_md: yes
-    self_contained: false
 date: "Sunday, May 17, 2015"
 ---
 
